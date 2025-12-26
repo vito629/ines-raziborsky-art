@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { EB_Garamond, Inter } from "next/font/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { PageLoader } from "@/components/page-loader";
 import "./globals.css";
 
 const ebGaramond = EB_Garamond({
@@ -50,7 +49,6 @@ export default function RootLayout({
       <body
         className={`${ebGaramond.variable} ${inter.variable} font-serif antialiased`}
       >
-        <PageLoader />
         <SmoothScroll />
         {children}
       </body>
