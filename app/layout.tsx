@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { EB_Garamond, Inter } from "next/font/google";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
 const ebGaramond = EB_Garamond({
@@ -15,8 +16,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Atelier — Fine Art Gallery",
-  description: "A curated collection of fine art",
+  title: "Ines Raziborsky — Contemporary Artist",
+  description: "Exploring the intersection of light, emotion, and form through contemporary art",
 };
 
 export default function RootLayout({
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${ebGaramond.variable} ${inter.variable} font-serif antialiased`}
       >
+        <SmoothScroll />
         {children}
       </body>
     </html>
