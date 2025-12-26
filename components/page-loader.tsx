@@ -6,10 +6,19 @@ import { motion, AnimatePresence } from 'framer-motion'
 const ease = [0.22, 1, 0.36, 1] as const
 
 export function PageLoader() {
+  // Start with false to avoid hydration mismatch - loader mounts on client only
+  const [mounted, setMounted] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
 
+  // Only show loader after component mounts on client
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+
     // Simulate loading progress
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
@@ -18,22 +27,25 @@ export function PageLoader() {
           return 100
         }
         // Eased progress - starts fast, slows down
-        const increment = Math.max(1, 20 - prev / 5)
+        const increment = Math.max(1, 15 - prev / 8)
         return Math.min(100, prev + increment)
       })
-    }, 50)
+    }, 40)
 
     // Complete loading after minimum display time
     const minLoadTime = setTimeout(() => {
       setProgress(100)
-      setTimeout(() => setIsLoading(false), 500)
-    }, 1500)
+      setTimeout(() => setIsLoading(false), 400)
+    }, 1200)
 
     return () => {
       clearInterval(progressInterval)
       clearTimeout(minLoadTime)
     }
-  }, [])
+  }, [mounted])
+
+  // Don't render anything on server or before mount
+  if (!mounted) return null
 
   return (
     <AnimatePresence>
@@ -41,16 +53,16 @@ export function PageLoader() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease }}
+          transition={{ duration: 0.6, ease }}
           className="fixed inset-0 z-[100] bg-background flex items-center justify-center"
         >
           <div className="flex flex-col items-center gap-8">
             {/* Logo text reveal */}
             <div className="overflow-hidden">
               <motion.h1
-                initial={{ y: 100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, ease, delay: 0.2 }}
+                initial={{ y: 60, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease, delay: 0.1 }}
                 className="text-3xl sm:text-4xl md:text-5xl font-serif tracking-tighter"
               >
                 Ines Raziborsky
@@ -63,7 +75,7 @@ export function PageLoader() {
                 className="h-full bg-foreground origin-left"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: progress / 100 }}
-                transition={{ duration: 0.3, ease: 'linear' }}
+                transition={{ duration: 0.2, ease: 'linear' }}
               />
             </div>
 
@@ -71,7 +83,7 @@ export function PageLoader() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
               className="font-sans text-xs uppercase tracking-[0.3em] text-muted-foreground tabular-nums"
             >
               {Math.round(progress)}%
