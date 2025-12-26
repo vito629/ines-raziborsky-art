@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Atelier Gallery
 
-## Getting Started
+An elegant, minimalistic art gallery website with integrated CMS for easy content management.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Elegant Design** - Minimalistic layout with EB Garamond typography
+- **Easy CMS** - Manage artwork via Sanity Studio at `/studio`
+- **Mobile-Friendly** - Edit content from any device
+- **Zero Config** - Deploy to Vercel in one click
+- **Type-Safe** - Built with TypeScript for reliability
+- **Modern Stack** - Next.js 16, Tailwind CSS, shadcn/ui
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Install dependencies**
+   ```bash
+   bun install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Set up Sanity**
+   - Create project at [sanity.io/manage](https://sanity.io/manage)
+   - Add Project ID to `.env.local`:
+     ```
+     NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+     NEXT_PUBLIC_SANITY_DATASET=production
+     ```
 
-## Learn More
+3. **Run development server**
+   ```bash
+   bun run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Add content**
+   - Visit http://localhost:3000/studio
+   - Add artwork and artist information
+   - Changes appear instantly on the site
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📖 Documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See [SETUP.md](./SETUP.md) for detailed setup, deployment, and customization instructions.
 
-## Deploy on Vercel
+## 🎨 Built With
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Next.js](https://nextjs.org) - React framework
+- [Sanity](https://sanity.io) - Headless CMS
+- [shadcn/ui](https://ui.shadcn.com) - UI components
+- [Tailwind CSS](https://tailwindcss.com) - Styling
+- [EB Garamond](https://fonts.google.com/specimen/EB+Garamond) - Typography
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 License
+
+MIT
