@@ -27,7 +27,7 @@ const container = {
       staggerChildren: 0.1,
     },
   },
-}
+} as const
 
 const item = {
   hidden: { opacity: 0, y: 60 },
@@ -36,10 +36,10 @@ const item = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
-}
+} as const
 
 export function GalleryAnimated({ artworks }: GalleryAnimatedProps) {
   return (
@@ -56,7 +56,7 @@ export function GalleryAnimated({ artworks }: GalleryAnimatedProps) {
             {artwork.image && (
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
                 className="w-full h-full"
               >
                 <Image
